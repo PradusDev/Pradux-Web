@@ -1,0 +1,12 @@
+{
+  "name": "pradux-group",
+  "version": "1.0.0",
+  "description": "Pradux Group - Sitio Web Oficial",
+  "scripts": {
+    "start": "npx -y serve .",
+    "dev": "npx -y serve ."
+  },
+  "keywords": [],
+  "author": "Pradux Group",
+  "license": "ISC"
+}
