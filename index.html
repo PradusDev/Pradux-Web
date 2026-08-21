@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pradux Group | Tecnología Simple, Cercana y Sin Complicaciones</title>
-  
+
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Agencia de servicios tecnológicos para PYMES locales. Soporte Técnico TI, Instalación de Sistemas POS, mantenimiento de computadores y redes con 90 días de garantía.">
-  <meta name="keywords" content="Pradux Group, Soporte TI, Sistema POS, UniCenta, Mantenimiento de computadores, Redes locales, Garantía 90 días, PYMES">
+  <meta name="description"
+    content="Agencia de servicios tecnológicos para PYMES locales. Soporte Técnico TI, Instalación de Sistemas POS, mantenimiento de computadores y redes con 90 días de garantía.">
+  <meta name="keywords"
+    content="Pradux Group, Soporte TI, Sistema POS, UniCenta, Mantenimiento de computadores, Redes locales, Garantía 90 días, PYMES">
   <meta name="author" content="Pradux Group">
   <meta property="og:title" content="Pradux Group | Tecnología Simple para tu Negocio">
-  <meta property="og:description" content="Soporte técnico profesional e instalación de sistemas POS con trato humano y 0% tecnicismos.">
+  <meta property="og:description"
+    content="Soporte técnico profesional e instalación de sistemas POS con trato humano y 0% tecnicismos.">
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -24,6 +37,7 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <!-- BACKGROUND CYBER ELEMENTS -->
@@ -35,7 +49,7 @@
   </div>
 
   <!-- SECCIÓN 1: NAVBAR -->
-  <header class="navbar">
+  <header class="navbar" id="navbar">
     <div class="navbar-container">
       <a href="#" class="nav-logo">
         <img src="assets/logo.svg" alt="Pradux Group Logo">
@@ -47,11 +61,13 @@
         <a href="#garantia" class="nav-link">Garantía</a>
         <a href="#proceso" class="nav-link">Proceso</a>
         <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
       </nav>
 
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="https://wa.me/573000000000" class="btn btn-whatsapp btn-whatsapp-action">
-          <i class="fa-brands fa-whatsapp"></i> Soporte Inmediato
+      <div class="nav-actions">
+        <a href="https://wa.me/573000000000" class="btn btn-whatsapp btn-whatsapp-action header-whatsapp-btn"
+          aria-label="Soporte Inmediato">
+          <i class="fa-brands fa-whatsapp"></i> <span class="btn-text">Soporte Inmediato</span>
         </a>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">
           <i class="fa-solid fa-bars"></i>
@@ -64,20 +80,21 @@
     <!-- SECCIÓN 2: HERO SECTION -->
     <section class="hero">
       <div class="container hero-content">
-        <div class="badge-tag">
+        <div class="badge-tag reveal reveal-up">
           <span class="badge-dot"></span>
           TECNOLOGÍA SIMPLE, CERCANA Y SIN COMPLICACIONES
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title reveal reveal-up">
           La tecnología debe <span class="text-gradient">simplificar</span> el trabajo de tu negocio, no complicarlo.
         </h1>
 
-        <p class="hero-subtitle">
-          Soluciones en Soporte Técnico e Instalación de Sistemas POS para comercios y empresas. Te acompañamos paso a paso con trato humano y 0% tecnicismos.
+        <p class="hero-subtitle reveal reveal-up">
+          Soluciones en Soporte Técnico e Instalación de Sistemas POS para comercios y empresas. Te acompañamos paso a
+          paso con trato humano y 0% tecnicismos.
         </p>
 
-        <div class="hero-ctas">
+        <div class="hero-ctas reveal reveal-up">
           <a href="https://wa.me/573000000000" class="btn btn-primary btn-whatsapp-action">
             <i class="fa-brands fa-whatsapp"></i> Solicitar Diagnóstico o Soporte
           </a>
@@ -87,7 +104,7 @@
         </div>
 
         <!-- 3 Pilares Banner -->
-        <div class="hero-pillars">
+        <div class="hero-pillars reveal reveal-up">
           <div class="pillar-item">
             <i class="fa-solid fa-bolt"></i> PROGRESO
           </div>
@@ -106,48 +123,55 @@
     <!-- SECCIÓN 3: NUESTROS SERVICIOS INICIALES (MVP) -->
     <section class="section" id="servicios">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
             SOLUCIONES ESPECIALIZADAS TI
           </div>
           <h2 class="section-title">Servicios diseñados para potenciar tu negocio</h2>
-          <p class="section-subtitle">Implementación rápida, soporte continuo y total respaldo técnico para que vendas sin interrupciones.</p>
+          <p class="section-subtitle">Implementación rápida, soporte continuo y total respaldo técnico para que vendas
+            sin interrupciones.</p>
         </div>
 
         <div class="cards-grid">
           <!-- Servicio 1: Soporte Técnico TI -->
-          <article class="card">
+          <article class="card reveal reveal-left">
             <div class="card-icon">
               <i class="fa-solid fa-desktop"></i>
             </div>
             <h3 class="card-title">Soporte Técnico Especializado TI</h3>
-            <p class="card-desc">Mantenimiento, ensamble y solución de fallas para computadores y laptops de oficina o negocio.</p>
+            <p class="card-desc">Mantenimiento, ensamble y solución de fallas para computadores y laptops de oficina o
+              negocio.</p>
             <ul class="card-list">
               <li><i class="fa-solid fa-circle-check"></i> Ensamble y configuración de PCs a medida para negocios.</li>
               <li><i class="fa-solid fa-circle-check"></i> Instalación y mantenimiento de impresoras y periféricos.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Configuración de redes locales y optimización de equipos.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Configuración de redes locales y optimización de equipos.
+              </li>
               <li><i class="fa-solid fa-circle-check"></i> Soporte presencial y remoto rápido.</li>
             </ul>
           </article>
 
           <!-- Servicio 2: Sistemas POS -->
-          <article class="card">
+          <article class="card reveal reveal-right">
             <div class="card-icon">
               <i class="fa-solid fa-cash-register"></i>
             </div>
             <h3 class="card-title">Instalación & Configuración POS</h3>
-            <p class="card-desc">Automatiza el cobro y control de inventario de tu negocio (pizzerías, tiendas, restaurantes, minimarkets).</p>
+            <p class="card-desc">Automatiza el cobro y control de inventario de tu negocio (pizzerías, tiendas,
+              restaurantes, minimarkets).</p>
             <ul class="card-list">
-              <li><i class="fa-solid fa-circle-check"></i> Instalación llave en mano de Software POS (ej. UniCenta).</li>
-              <li><i class="fa-solid fa-circle-check"></i> Integración de hardware: Impresoras térmicas, cajón monedero y lectores.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Capacitación sencilla al personal (cajeros y administradores).</li>
+              <li><i class="fa-solid fa-circle-check"></i> Instalación llave en mano de Software POS (ej. UniCenta).
+              </li>
+              <li><i class="fa-solid fa-circle-check"></i> Integración de hardware: Impresoras térmicas, cajón monedero
+                y lectores.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Capacitación sencilla al personal (cajeros y
+                administradores).</li>
               <li><i class="fa-solid fa-circle-check"></i> Copias de seguridad de datos y soporte ante emergencias.</li>
             </ul>
           </article>
 
           <!-- Banner Próximamente (Futuro Roadmap) -->
-          <div class="roadmap-banner">
+          <div class="roadmap-banner reveal reveal-up">
             <div>
               <span class="roadmap-tag">PRÓXIMAMENTE • ROADMAP</span>
               <div class="roadmap-text">
@@ -168,51 +192,55 @@
     <!-- SECCIÓN 4: POR QUÉ PRADUX (PROPUESTA DE VALOR) -->
     <section class="section" id="propuesta">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
             PROPUESTA DE VALOR
           </div>
           <h2 class="section-title">Por qué elegir a Pradux Group</h2>
-          <p class="section-subtitle">Diferenciadores reales pensados para la tranquilidad y crecimiento de tu negocio local.</p>
+          <p class="section-subtitle">Diferenciadores reales pensados para la tranquilidad y crecimiento de tu negocio
+            local.</p>
         </div>
 
         <div class="value-grid">
           <!-- 1 -->
-          <div class="value-card" id="garantia">
+          <div class="value-card reveal reveal-up" id="garantia">
             <div class="value-icon">
               <i class="fa-solid fa-shield-heart"></i>
             </div>
             <div class="value-body">
               <h3>90 Días de Garantía Directa</h3>
-              <p>Si el sistema o la solución no funciona exactamente como acordamos, lo ajustamos sin ningún costo adicional para tu negocio.</p>
+              <p>Si el sistema o la solución no funciona exactamente como acordamos, lo ajustamos sin ningún costo
+                adicional para tu negocio.</p>
             </div>
           </div>
 
           <!-- 2 -->
-          <div class="value-card">
+          <div class="value-card reveal reveal-up">
             <div class="value-icon">
               <i class="fa-solid fa-comments"></i>
             </div>
             <div class="value-body">
               <h3>Lenguaje Sencillo (Cero Tecnicismos)</h3>
-              <p>Te explicamos exactamente qué necesita tu negocio en español claro y sin enredos. Entenderás cada paso del proceso.</p>
+              <p>Te explicamos exactamente qué necesita tu negocio en español claro y sin enredos. Entenderás cada paso
+                del proceso.</p>
             </div>
           </div>
 
           <!-- 3 -->
-          <div class="value-card">
+          <div class="value-card reveal reveal-up">
             <div class="value-icon">
               <i class="fa-solid fa-handshake-angle"></i>
             </div>
             <div class="value-body">
               <h3>Trato Cálido y Humano</h3>
-              <p>No somos una corporación lejana ni un técnico informal impredecible. Somos tu aliado tecnológico dedicado y cercano.</p>
+              <p>No somos una corporación lejana ni un técnico informal impredecible. Somos tu aliado tecnológico
+                dedicado y cercano.</p>
             </div>
           </div>
 
           <!-- 4 -->
-          <div class="value-card">
+          <div class="value-card reveal reveal-up">
             <div class="value-icon">
               <i class="fa-solid fa-scale-balanced"></i>
             </div>
@@ -228,52 +256,58 @@
     <!-- SECCIÓN 5: TABLA COMPARATIVA DE CONFIANZA -->
     <section class="section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
-            COMPARACIÓN DE CONFIAZA
+            COMPARACIÓN DE CONFIANZA
           </div>
           <h2 class="section-title">¿Por qué Pradux es tu mejor opción?</h2>
-          <p class="section-subtitle">Analiza la diferencia entre trabajar con improvisación o con respaldo profesional cercano.</p>
+          <p class="section-subtitle">Analiza la diferencia entre trabajar con improvisación o con respaldo profesional
+            cercano.</p>
         </div>
 
-        <div class="table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Criterio de Evaluación</th>
-                <th>Técnico Informal Tradicional</th>
-                <th>Agencia Corporativa Costosa</th>
-                <th>Pradux Group</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Trato y Comunicación</strong></td>
-                <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Inconstante / Informal</td>
-                <td class="cell-medium"><i class="fa-solid fa-minus"></i> Burocrático y Distante</td>
-                <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Cálido, Cercano y Directo</td>
-              </tr>
-              <tr>
-                <td><strong>Garantía de Servicio</strong></td>
-                <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Poca o Nula</td>
-                <td class="cell-medium"><i class="fa-solid fa-minus"></i> Muy restringida</td>
-                <td class="cell-good"><i class="fa-solid fa-circle-check"></i> 90 Días Respaldados</td>
-              </tr>
-              <tr>
-                <td><strong>Claridad Técnica</strong></td>
-                <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Suele confundir al cliente</td>
-                <td class="cell-medium"><i class="fa-solid fa-minus"></i> Exceso de tecnicismos</td>
-                <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Explicaciones Sencillas</td>
-              </tr>
-              <tr>
-                <td><strong>Relación Precio-Valor</strong></td>
-                <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Económico sin respaldo</td>
-                <td class="cell-medium"><i class="fa-solid fa-minus"></i> Costos prohibitivos</td>
-                <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Justo y Transparente</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="table-container-outer reveal reveal-up">
+          <div class="table-scroll-hint">
+            <i class="fa-solid fa-arrows-left-right"></i> Desliza para ver la tabla completa
+          </div>
+          <div class="table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Criterio de Evaluación</th>
+                  <th>Técnico Informal Tradicional</th>
+                  <th>Agencia Corporativa Costosa</th>
+                  <th>Pradux Group</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Trato y Comunicación</strong></td>
+                  <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Inconstante / Informal</td>
+                  <td class="cell-medium"><i class="fa-solid fa-minus"></i> Burocrático y Distante</td>
+                  <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Cálido, Cercano y Directo</td>
+                </tr>
+                <tr>
+                  <td><strong>Garantía de Servicio</strong></td>
+                  <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Poca o Nula</td>
+                  <td class="cell-medium"><i class="fa-solid fa-minus"></i> Muy restringida</td>
+                  <td class="cell-good"><i class="fa-solid fa-circle-check"></i> 90 Días Respaldados</td>
+                </tr>
+                <tr>
+                  <td><strong>Claridad Técnica</strong></td>
+                  <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Suele confundir al cliente</td>
+                  <td class="cell-medium"><i class="fa-solid fa-minus"></i> Exceso de tecnicismos</td>
+                  <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Explicaciones Sencillas</td>
+                </tr>
+                <tr>
+                  <td><strong>Relación Precio-Valor</strong></td>
+                  <td class="cell-bad"><i class="fa-solid fa-xmark"></i> Económico sin respaldo</td>
+                  <td class="cell-medium"><i class="fa-solid fa-minus"></i> Costos prohibitivos</td>
+                  <td class="cell-good"><i class="fa-solid fa-circle-check"></i> Justo y Transparente</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -281,7 +315,7 @@
     <!-- SECCIÓN 6: PROCESO DE TRABAJO (4 PASOS SIMPLES) -->
     <section class="section" id="proceso">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
             METODOLOGÍA SIMPLE
@@ -291,37 +325,40 @@
         </div>
 
         <div class="process-grid">
-          <div class="process-step">
+          <div class="process-step reveal reveal-up">
             <div class="step-num">01</div>
             <h3 class="step-title">Diagnóstico Inicial</h3>
-            <p class="step-desc">Nos cuentas la falla o necesidad de tu negocio por WhatsApp o llamada sin compromiso.</p>
+            <p class="step-desc">Nos cuentas la falla o necesidad de tu negocio por WhatsApp o llamada sin compromiso.
+            </p>
           </div>
 
-          <div class="process-step">
+          <div class="process-step reveal reveal-up">
             <div class="step-num">02</div>
             <h3 class="step-title">Propuesta Clara</h3>
             <p class="step-desc">Te entregamos una solución con precio fijo y tiempo estimado transparente.</p>
           </div>
 
-          <div class="process-step">
+          <div class="process-step reveal reveal-up">
             <div class="step-num">03</div>
             <h3 class="step-title">Ejecución e Instalación</h3>
-            <p class="step-desc">Realizamos el trabajo técnico con pruebas en vivo y capacitación completa a tu personal.</p>
+            <p class="step-desc">Realizamos el trabajo técnico con pruebas en vivo y capacitación completa a tu
+              personal.</p>
           </div>
 
-          <div class="process-step">
+          <div class="process-step reveal reveal-up">
             <div class="step-num">04</div>
             <h3 class="step-title">Acompañamiento</h3>
-            <p class="step-desc">Activamos tu garantía de 90 días para que trabajes con total tranquilidad y respaldo.</p>
+            <p class="step-desc">Activamos tu garantía de 90 días para que trabajes con total tranquilidad y respaldo.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 7: PRUEBA SOCIAL / TESTIMONIOS -->
-    <section class="section">
+    <!-- SECCIÓN 7: PRUEBA SOCIAL / TESTIMONIOS (CARRUSEL INTERACTIVO) -->
+    <section class="section" id="testimonios">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
             PRUEBA SOCIAL
@@ -330,52 +367,110 @@
           <p class="section-subtitle">Experiencias reales de clientes que confiaron su tecnología a Pradux Group.</p>
         </div>
 
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <i class="fa-solid fa-quote-left quote-icon"></i>
-            <div class="rating-stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <p class="testimonial-text">"Instalaron el sistema POS en mi pizzería y me explicaron todo en menos de una hora. Cuando tuve una duda el fin de semana, me respondieron de inmediato."</p>
-            <div class="author-info">
-              <div class="author-avatar">CM</div>
-              <div class="author-details">
-                <h4>Carlos M.</h4>
-                <p>Dueño de Restaurante & Pizzería</p>
+        <div class="carousel-wrapper reveal reveal-up">
+          <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Testimonio Anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="carousel-container" id="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="testimonial-card">
+                  <i class="fa-solid fa-quote-left quote-icon"></i>
+                  <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  </div>
+                  <p class="testimonial-text">"Instalaron el sistema POS en mi pizzería y me explicaron todo en menos de
+                    una hora. Cuando tuve una duda el fin de semana, me respondieron de inmediato."</p>
+                  <div class="author-info">
+                    <div class="author-avatar">CM</div>
+                    <div class="author-details">
+                      <h4>Carlos M.</h4>
+                      <p>Dueño de Restaurante & Pizzería</p>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="testimonial-card">
+                  <i class="fa-solid fa-quote-left quote-icon"></i>
+                  <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  </div>
+                  <p class="testimonial-text">"Armaron los equipos de mi oficina y dejaron la red configurada
+                    perfectamente. Lo mejor fue la garantía de 90 días y la amabilidad con todo el equipo."</p>
+                  <div class="author-info">
+                    <div class="author-avatar">AR</div>
+                    <div class="author-details">
+                      <h4>Andrea R.</h4>
+                      <p>Administradora de Empresa</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="testimonial-card">
+                  <i class="fa-solid fa-quote-left quote-icon"></i>
+                  <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  </div>
+                  <p class="testimonial-text">"Teníamos problemas constantes con las impresoras de comandas y el cajón
+                    monedero. Pradux hizo un diagnóstico claro y solucionó la falla el mismo día."</p>
+                  <div class="author-info">
+                    <div class="author-avatar">JG</div>
+                    <div class="author-details">
+                      <h4>Jorge G.</h4>
+                      <p>Gerente de Minimarket Local</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="carousel-slide">
+                <div class="testimonial-card">
+                  <i class="fa-solid fa-quote-left quote-icon"></i>
+                  <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  </div>
+                  <p class="testimonial-text">"Es la primera vez que un soporte técnico nos habla en español claro sin
+                    enredarnos con términos extraños. Totalmente recomendados para cualquier PYME."</p>
+                  <div class="author-info">
+                    <div class="author-avatar">SL</div>
+                    <div class="author-details">
+                      <h4>Sofia L.</h4>
+                      <p>Directora Comercial de Boutique</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <div class="testimonial-card">
-            <i class="fa-solid fa-quote-left quote-icon"></i>
-            <div class="rating-stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <p class="testimonial-text">"Armaron los equipos de mi oficina y dejaron la red configurada perfectamente. Lo mejor fue la garantía de 90 días y la amabilidad con todo el equipo."</p>
-            <div class="author-info">
-              <div class="author-avatar">AR</div>
-              <div class="author-details">
-                <h4>Andrea R.</h4>
-                <p>Administradora de Empresa</p>
-              </div>
-            </div>
-          </div>
+          <button class="carousel-btn next-btn" id="carousel-next" aria-label="Testimonio Siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
     </section>
 
     <!-- SECCIÓN 8: PREGUNTAS FRECUENTES (FAQ) -->
     <section class="section" id="faq">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div class="badge-tag">
             <span class="badge-dot"></span>
             RESOLVEMOS TUS DUDAS
@@ -384,7 +479,7 @@
           <p class="section-subtitle">Todo lo que necesitas saber antes de contratar tus servicios técnicos.</p>
         </div>
 
-        <div class="faq-accordion">
+        <div class="faq-accordion reveal reveal-up">
           <!-- Q1 -->
           <div class="faq-item active">
             <button class="faq-question">
@@ -392,7 +487,8 @@
               <i class="fa-solid fa-chevron-down"></i>
             </button>
             <div class="faq-answer">
-              <p>Cuentas con 90 días de garantía directa para cualquier ajuste o calibración. Si algo no funciona como acordamos, acudimos a resolverlo inmediatamente sin ningún costo adicional para tu negocio.</p>
+              <p>Cuentas con 90 días de garantía directa para cualquier ajuste o calibración. Si algo no funciona como
+                acordamos, acudimos a resolverlo inmediatamente sin ningún costo adicional para tu negocio.</p>
             </div>
           </div>
 
@@ -403,7 +499,8 @@
               <i class="fa-solid fa-chevron-down"></i>
             </button>
             <div class="faq-answer">
-              <p>Sí, entendemos que si tu sistema de cobro o computadores fallan, tu negocio se detiene. Priorizamos la atención rápida por soporte remoto o presencial para que sigas vendiendo sin interrupción.</p>
+              <p>Sí, entendemos que si tu sistema de cobro o computadores fallan, tu negocio se detiene. Priorizamos la
+                atención rápida por soporte remoto o presencial para que sigas vendiendo sin interrupción.</p>
             </div>
           </div>
 
@@ -414,26 +511,94 @@
               <i class="fa-solid fa-chevron-down"></i>
             </button>
             <div class="faq-answer">
-              <p>Te asesoramos gratuitamente para comprar los mejores componentes con proveedores confiables al mejor precio del mercado, o si lo prefieres, nos encargamos de suministrar la solución completa llave en mano.</p>
+              <p>Te asesoramos gratuitamente para comprar los mejores componentes con proveedores confiables al mejor
+                precio del mercado, o si lo prefieres, nos encargamos de suministrar la solución completa llave en mano.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <!-- SECCIÓN: CONTACTO / SOLICITAR DIAGNÓSTICO -->
+      <section class="section" id="contacto">
+        <div class="container">
+          <div class="section-header reveal reveal-up">
+            <div class="badge-tag">
+              <span class="badge-dot"></span>
+              CONTACTO DIRECTO
+            </div>
+            <h2 class="section-title">Hablemos de la tecnología de tu negocio</h2>
+            <p class="section-subtitle">Déjanos tus datos y un especialista se pondrá en contacto contigo a la brevedad
+              con un diagnóstico preliminar sin compromiso.</p>
+          </div>
+
+          <div class="contact-wrapper reveal reveal-up">
+            <!-- Contact Form Card -->
+            <div class="contact-form-card">
+              <form id="contact-form" class="contact-form">
+                <h3 class="form-title">Solicitar Diagnóstico o Asesoría</h3>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-name">Nombre Completo *</label>
+                    <input type="text" id="contact-name" name="name" placeholder="Ej. Juan Pérez" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Correo Electrónico *</label>
+                    <input type="email" id="contact-email" name="email" placeholder="ejemplo@empresa.com" required>
+                  </div>
+                </div>
+
+
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-sector">Sector de la Empresa *</label>
+                    <select id="contact-sector" name="sector" required>
+                      <option value="" disabled selected>Selecciona un sector</option>
+                      <option value="Restaurante / Gastronomía">Restaurante / Gastronomía</option>
+                      <option value="Comercio / Minimarket / Tienda">Comercio / Minimarket / Tienda</option>
+                      <option value="Servicios / Oficina">Servicios / Oficina</option>
+                      <option value="Salud / Clínica">Salud / Clínica</option>
+                      <option value="Educación">Educación</option>
+                      <option value="Tecnología">Tecnología</option>
+                      <option value="Otro Sector">Otro Sector</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                  <label for="contact-service">Servicio de Interés</label>
+                  <select id="contact-service" name="service">
+                    <option value="Soporte Técnico TI">Soporte Técnico Especializado TI</option>
+                    <option value="Instalación POS">Instalación & Configuración POS</option>
+                    <option value="Redes y Mantenimiento">Redes Locales & Cableado</option>
+                    <option value="Software a Medida / ERP">Software a Medida / ERP</option>
+                    <option value="Diagnóstico General">Diagnóstico General</option>
+                  </select>
+                </div>
+                </div>
+
+                
+
+                <div class="form-group">
+                  <label for="contact-message">Detalles adicionales o consulta</label>
+                  <textarea id="contact-message" name="message" rows="4"
+                    placeholder="Describe brevemente qué requiere tu negocio (Punto de venta, página web, integración con inteligencía artificial, fallas actuales)"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i> Enviar Solicitar Diagnóstico
+                </button>
+
+                <div id="form-response" class="form-response"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
   </main>
 
-  <!-- SECCIÓN 9: FOOTER & LLAMADO A LA ACCIÓN FINAL -->
+  <!-- SECCIÓN 9: FOOTER -->
   <footer class="final-cta">
     <div class="container">
-      <!-- CTA BOX -->
-      <div class="cta-box">
-        <h2>¿Listo para simplificar la tecnología de tu negocio?</h2>
-        <p>Escríbenos ahora mismo y recibe un diagnóstico preliminar sin costo ni compromiso.</p>
-        <a href="https://wa.me/573000000000" class="btn btn-whatsapp btn-whatsapp-action" style="font-size: 1.15rem; padding: 1.1rem 2.25rem;">
-          <i class="fa-brands fa-whatsapp"></i> Hablar con un Especialista en WhatsApp
-        </a>
-      </div>
-
       <!-- FOOTER CONTENT -->
       <div class="footer-content">
         <div class="footer-brand">
@@ -452,6 +617,7 @@
             <a href="#propuesta">Por qué Pradux</a>
             <a href="#garantia">Garantía 90 Días</a>
             <a href="#proceso">Proceso de Trabajo</a>
+            <a href="#contacto">Contacto</a>
           </div>
         </div>
 
@@ -470,7 +636,7 @@
           <ul class="contact-info">
             <li><i class="fa-solid fa-location-dot"></i> Cobertura Local & Remota</li>
             <li><i class="fa-brands fa-whatsapp"></i> +57 300 000 0000</li>
-            <li><i class="fa-solid fa-envelope"></i> contacto@praduxgroup.com</li>
+            <li><i class="fa-solid fa-envelope"></i> devsoluciones3@gmail.com</li>
           </ul>
         </div>
       </div>
@@ -478,12 +644,20 @@
       <!-- FOOTER BOTTOM -->
       <div class="footer-bottom">
         <p>© 2026 Pradux Group. Todos los derechos reservados.</p>
-        <p>Diseñado con Estilo Cyber-Minimalista para Alta Conversión.</p>
       </div>
     </div>
   </footer>
 
+  <!-- BOTÓN FLOTANTE FIJO DE WHATSAPP -->
+  <a href="https://wa.me/573000000000" class="floating-whatsapp btn-whatsapp-action" target="_blank" rel="noopener"
+    aria-label="Hablar por WhatsApp">
+    <div class="whatsapp-badge"></div>
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">¿Necesitas ayuda técnica? Chatea con nosotros</span>
+  </a>
+
   <!-- Main JavaScript File -->
   <script src="main.js"></script>
 </body>
+
 </html>
