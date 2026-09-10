@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const defaultMessage = encodeURIComponent(
         "Hola Pradux Group 👋 me interesa solicitar un diagnóstico/soporte para mi negocio. ¿Me pueden brindar asesoría?"
       );
-      const phoneNumber = "573000000000";
+      const phoneNumber = "573164882666";
       window.open(`https://wa.me/${phoneNumber}?text=${defaultMessage}`, '_blank');
     });
   });
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formResponse.innerHTML = `
           <strong><i class="fa-solid fa-circle-check"></i> ¡Gracias, ${name}!</strong><br>
           Hemos recibido la información de tu empresa (<em>${company} - ${sector}</em>). Un especialista se pondrá en contacto contigo a la brevedad al correo <strong>${email}</strong> o WhatsApp.<br><br>
-          <a href="https://wa.me/573000000000?text=${encodeURIComponent(
+          <a href="https://wa.me/573164882666?text=${encodeURIComponent(
             `Hola Pradux Group 👋 mi nombre es ${name} de ${company} (Sector: ${sector}). Solicité un diagnóstico para ${service}. Mi teléfono/WhatsApp es ${phone}.`
           )}" target="_blank" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.88rem; margin-top: 0.5rem; display: inline-flex;">
             <i class="fa-brands fa-whatsapp"></i> Enviar resumen por WhatsApp
