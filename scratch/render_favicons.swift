@@ -26,7 +26,7 @@ let htmlContent = """
 let sizes: [(Int, String)] = [
     (16, "assets/favicon-16x16.png"),
     (32, "assets/favicon-32x32.png"),
-    (180, "assets/apple-touch-icon.png"),
+    (180, "assets/Pradux_isotipo_blanco_sin_fondo"),
     (32, "favicon.ico")
 ]
 

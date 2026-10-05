@@ -45,7 +45,7 @@
     <rect x="28" y="64" width="10" height="10" fill="#0052FF" opacity="0.4" rx="2" />
   </g>
 
-  <!-- LOGO TEXT: PRADUX -->
+  <!-- Pradux_blanco_sin_fondo TEXT: PRADUX -->
   <g transform="translate(110, 62)">
     <text font-family="'Outfit', 'Inter', 'Segoe UI', sans-serif" font-weight="900" font-size="40" letter-spacing="4" fill="#FFFFFF">
       PRADUX

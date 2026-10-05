@@ -206,21 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 5. MOUSE TRACKING GLOW EFFECT ON CARDS
-  const cards = document.querySelectorAll('.card, .value-card, .process-step, .testimonial-card');
-
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
-  });
-
-  // 6. WHATSAPP CLICK HANDLER
+  // 5. WHATSAPP CLICK HANDLER
   const whatsappBtns = document.querySelectorAll('.btn-whatsapp-action');
   
   whatsappBtns.forEach(btn => {
@@ -234,48 +220,120 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 7. NAVBAR SCROLL SHADOW EFFECT
+  // 6. NAVBAR SCROLL SHADOW EFFECT
   const navbar = document.getElementById('navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 82, 255, 0.2)';
-      } else {
-        navbar.style.boxShadow = 'none';
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
     });
   }
 
-  // 8. CONTACT FORM HANDLER
+  // 7. CONTACT FORM HANDLER
   const contactForm = document.getElementById('contact-form');
   const formResponse = document.getElementById('form-response');
 
+  // Correo de destino (servicio FormSubmit) y número de WhatsApp de Pradux
+  const CONTACT_EMAIL = 'devsoluciones3@gmail.com';
+  const WHATSAPP_NUMBER = '573164882666';
+
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const submitBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+
+    const showResponse = (type, title, text, waUrl) => {
+      if (!formResponse) return;
+      formResponse.className = `form-response ${type}`;
+      formResponse.replaceChildren();
+
+      const strong = document.createElement('strong');
+      strong.textContent = title;
+      formResponse.append(strong, document.createElement('br'), text);
+
+      if (waUrl) {
+        const link = document.createElement('a');
+        link.href = waUrl;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.className = 'btn btn-whatsapp form-response-wa';
+        link.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Abrir WhatsApp con mi mensaje';
+        formResponse.append(link);
+      }
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('contact-name')?.value || '';
-      const phone = document.getElementById('contact-phone')?.value || '';
-      const email = document.getElementById('contact-email')?.value || '';
-      const company = document.getElementById('contact-company')?.value || 'No especificada';
-      const sector = document.getElementById('contact-sector')?.value || 'No especificado';
-      const service = document.getElementById('contact-service')?.value || 'Diagnóstico General';
-      const message = document.getElementById('contact-message')?.value || '';
+      const data = {
+        name: document.getElementById('contact-name')?.value.trim() || '',
+        email: document.getElementById('contact-email')?.value.trim() || '',
+        sector: document.getElementById('contact-sector')?.value || 'No especificado',
+        service: document.getElementById('contact-service')?.value || 'Diagnóstico General',
+        message: document.getElementById('contact-message')?.value.trim() || 'Sin detalles adicionales'
+      };
 
-      if (formResponse) {
-        formResponse.className = 'form-response success';
-        formResponse.innerHTML = `
-          <strong><i class="fa-solid fa-circle-check"></i> ¡Gracias, ${name}!</strong><br>
-          Hemos recibido la información de tu empresa (<em>${company} - ${sector}</em>). Un especialista se pondrá en contacto contigo a la brevedad al correo <strong>${email}</strong> o WhatsApp.<br><br>
-          <a href="https://wa.me/573164882666?text=${encodeURIComponent(
-            `Hola Pradux Group 👋 mi nombre es ${name} de ${company} (Sector: ${sector}). Solicité un diagnóstico para ${service}. Mi teléfono/WhatsApp es ${phone}.`
-          )}" target="_blank" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.88rem; margin-top: 0.5rem; display: inline-flex;">
-            <i class="fa-brands fa-whatsapp"></i> Enviar resumen por WhatsApp
-          </a>
-        `;
+      // 1. WhatsApp: se abre en el mismo clic para que el navegador no bloquee la ventana
+      const waText = [
+        'Hola Pradux Group 👋 quiero solicitar un diagnóstico.',
+        '',
+        `*Nombre:* ${data.name}`,
+        `*Correo:* ${data.email}`,
+        `*Sector:* ${data.sector}`,
+        `*Servicio de interés:* ${data.service}`,
+        `*Detalles:* ${data.message}`
+      ].join('\n');
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
+      const waWindow = window.open(waUrl, '_blank');
+      if (waWindow) waWindow.opener = null;
+
+      // 2. Correo: se envía en segundo plano a través de FormSubmit
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
       }
 
-      contactForm.reset();
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `Nueva solicitud de diagnóstico - ${data.name}`,
+            _template: 'table',
+            _captcha: 'false',
+            Nombre: data.name,
+            email: data.email,
+            Sector: data.sector,
+            'Servicio de interés': data.service,
+            Detalles: data.message
+          })
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok || String(result.success) !== 'true') {
+          throw new Error(result.message || `HTTP ${res.status}`);
+        }
+
+        showResponse(
+          'success',
+          `¡Gracias, ${data.name}!`,
+          waWindow
+            ? 'Recibimos tu solicitud por correo. En la pestaña de WhatsApp que se abrió solo tienes que presionar "Enviar" para hablar con nosotros de inmediato.'
+            : 'Recibimos tu solicitud por correo. Si quieres hablar con nosotros de inmediato, envíanos tu mensaje por WhatsApp:',
+          waWindow ? null : waUrl
+        );
+        contactForm.reset();
+      } catch (err) {
+        console.error('Error al enviar el formulario por correo:', err);
+        showResponse(
+          'error',
+          'No pudimos enviar tu solicitud por correo.',
+          'Por favor envíanos tu mensaje por WhatsApp para atenderte de inmediato:',
+          waUrl
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = submitBtnHTML;
+        }
+      }
     });
   }
 });
