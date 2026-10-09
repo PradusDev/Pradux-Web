@@ -3,6 +3,41 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. THEME TOGGLE (DARK / LIGHT)
+  const themeToggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+
+  const applyTheme = (theme) => {
+    const isLight = theme === 'light';
+    if (isLight) {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+
+    if (themeToggle) {
+      const label = isLight ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('title', label);
+      const icon = themeToggle.querySelector('i');
+      if (icon) {
+        icon.className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      }
+    }
+  };
+
+  applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      try {
+        localStorage.setItem('pradux-theme', next);
+      } catch (e) { }
+    });
+  }
+
   // 1. MOBILE MENU TOGGLE WITH OVERFLOW LOCK
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
@@ -52,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. INTERACTIVE TESTIMONIALS CAROUSEL
+  // 2. INTERACTIVE SERVICES CAROUSEL
   const carouselTrack = document.getElementById('carousel-track');
   const carouselPrevBtn = document.getElementById('carousel-prev');
   const carouselNextBtn = document.getElementById('carousel-next');
@@ -73,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slides.forEach((_, idx) => {
         const dot = document.createElement('button');
         dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
-        dot.setAttribute('aria-label', `Ir al testimonio ${idx + 1}`);
+        dot.setAttribute('aria-label', `Ir al servicio ${idx + 1}`);
         dot.addEventListener('click', () => goToSlide(idx));
         carouselDotsContainer.appendChild(dot);
       });
@@ -142,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stopAutoPlay();
       autoPlayTimer = setInterval(() => {
         goToSlide(currentIndex + 1);
-      }, 4500);
+      }, 7000);
     };
 
     const stopAutoPlay = () => {
@@ -163,25 +198,66 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   }
 
-  // 3. SCROLL REVEAL ANIMATION SYSTEM (INTERSECTION OBSERVER)
-  const revealElements = document.querySelectorAll('.reveal');
+  // 3. SCROLL-LINKED HORIZONTAL REVEAL
+  // Each element's horizontal offset is tied to its position in the viewport:
+  // while it rises from the bottom edge (scrolling down) it slides toward the
+  // center; when it sinks back (scrolling up) it slides outward again.
+  const revealElements = Array.from(document.querySelectorAll('.reveal'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (revealElements.length > 0) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          // Optionally unobserve after animating once
-          observer.unobserve(entry.target);
+  if (revealElements.length > 0 && !reduceMotion) {
+    // Direction: -1 = sits left of center (moves out to the left), 1 = right.
+    const computeDirections = () => {
+      const centerX = window.innerWidth / 2;
+      revealElements.forEach((el, i) => {
+        if (el.classList.contains('reveal-left')) {
+          el._dir = -1;
+          return;
         }
+        if (el.classList.contains('reveal-right')) {
+          el._dir = 1;
+          return;
+        }
+        el.style.setProperty('--shift', '0px');
+        const rect = el.getBoundingClientRect();
+        const offset = (rect.left + rect.width / 2) - centerX;
+        // Centered elements alternate sides so the motion stays horizontal.
+        el._dir = Math.abs(offset) < window.innerWidth * 0.05 ? (i % 2 === 0 ? -1 : 1) : Math.sign(offset);
       });
-    }, {
-      root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
+    };
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+    let ticking = false;
+
+    const updateReveal = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      const maxShift = window.innerWidth <= 768 ? 40 : 110;
+      // Distance (in px) the element travels upward to fully reach its place.
+      const travel = vh * 0.55;
+
+      revealElements.forEach((el) => {
+        const top = el.getBoundingClientRect().top;
+        const progress = Math.min(Math.max((vh - top) / travel, 0), 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.style.setProperty('--shift', `${(1 - eased) * maxShift * el._dir}px`);
+        el.style.setProperty('--fade', (0.15 + 0.85 * eased).toFixed(3));
+      });
+    };
+
+    const requestUpdate = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateReveal);
+      }
+    };
+
+    computeDirections();
+    updateReveal();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', () => {
+      computeDirections();
+      requestUpdate();
+    });
   }
 
   // 4. FAQ ACCORDION INTERACTION

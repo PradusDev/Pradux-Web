@@ -33,6 +33,15 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Aplica el tema guardado antes de pintar la página (evita parpadeo) -->
+  <script>
+    try {
+      if (localStorage.getItem('pradux-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) { }
+  </script>
 </head>
 
 <body>
@@ -47,6 +56,7 @@
 
       <nav class="nav-menu" id="nav-menu">
         <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#soluciones" class="nav-link">Soluciones</a>
         <a href="#propuesta" class="nav-link">Por qué Pradux</a>
         <a href="#garantia" class="nav-link">Garantía</a>
         <a href="#proceso" class="nav-link">Proceso</a>
@@ -55,6 +65,10 @@
       </nav>
 
       <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo claro"
+          title="Cambiar a modo claro">
+          <i class="fa-solid fa-sun"></i>
+        </button>
         <a href="https://wa.me/573164882666" class="btn btn-whatsapp btn-whatsapp-action header-whatsapp-btn"
           aria-label="Soporte Inmediato">
           <i class="fa-brands fa-whatsapp"></i> <span class="btn-text">Soporte Inmediato</span>
@@ -158,6 +172,120 @@
               <span class="chip"><i class="fa-solid fa-robot"></i> Agentes IA / Chatbots</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3B: SOLUCIONES (CARRUSEL DE SERVICIOS) -->
+    <section class="section" id="soluciones">
+      <div class="container">
+        <div class="section-header reveal reveal-up">
+          <div class="badge-tag">
+            SOLUCIONES DIGITALES
+          </div>
+          <h2 class="section-title">Más formas de hacer tu trabajo más fácil</h2>
+          <p class="section-subtitle">Conoce en qué consiste cada servicio y cómo te ayuda a ahorrar tiempo, reducir
+            errores y enfocarte en lo que realmente importa.</p>
+        </div>
+
+        <div class="carousel-wrapper services-carousel reveal reveal-up">
+          <button class="carousel-btn" id="carousel-prev" type="button" aria-label="Servicio anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="carousel-container" id="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+
+              <!-- Slide 1: Desarrollo Web -->
+              <article class="carousel-slide">
+                <div class="solution-card">
+                  <div class="solution-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                  <h3 class="solution-title">Desarrollo Web</h3>
+                  <p class="solution-desc">Diseñamos y construimos sitios web, tiendas en línea y aplicaciones web a la
+                    medida de tu negocio: rápidas, seguras y que se ven bien en cualquier celular o computador.</p>
+                  <h4 class="solution-subtitle">¿Cómo te facilita el trabajo?</h4>
+                  <ul class="solution-benefits">
+                    <li><i class="fa-solid fa-store"></i> Tus clientes te encuentran y te contactan las 24 horas, aunque
+                      tu local esté cerrado.</li>
+                    <li><i class="fa-solid fa-calendar-check"></i> Recibe pedidos, reservas o cotizaciones en línea sin
+                      responder uno por uno.</li>
+                    <li><i class="fa-solid fa-chart-line"></i> Proyecta una imagen profesional que genera confianza y
+                      atrae nuevos clientes.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Slide 2: Automatización de Procesos -->
+              <article class="carousel-slide">
+                <div class="solution-card">
+                  <div class="solution-icon"><i class="fa-solid fa-gears"></i></div>
+                  <h3 class="solution-title">Automatización de Procesos</h3>
+                  <p class="solution-desc">Identificamos las tareas repetitivas de tu día a día (facturas, reportes,
+                    inventarios, mensajes a clientes) y las convertimos en procesos automáticos que trabajan solos.</p>
+                  <h4 class="solution-subtitle">¿Cómo te facilita el trabajo?</h4>
+                  <ul class="solution-benefits">
+                    <li><i class="fa-solid fa-clock"></i> Recupera horas a la semana que hoy se van en copiar, pegar y
+                      revisar datos.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Menos errores humanos en cuentas, inventarios y
+                      registros.</li>
+                    <li><i class="fa-solid fa-robot"></i> Respuestas y recordatorios automáticos para tus clientes por
+                      correo o WhatsApp.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Slide 3: Consultoría Tecnológica -->
+              <article class="carousel-slide">
+                <div class="solution-card">
+                  <div class="solution-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                  <h3 class="solution-title">Consultoría Tecnológica</h3>
+                  <p class="solution-desc">Analizamos cómo funciona tu negocio hoy y te recomendamos, en lenguaje
+                    sencillo, qué herramientas, equipos o sistemas necesitas realmente, sin venderte lo que no usarás.
+                  </p>
+                  <h4 class="solution-subtitle">¿Cómo te facilita el trabajo?</h4>
+                  <ul class="solution-benefits">
+                    <li><i class="fa-solid fa-route"></i> Un plan claro y por etapas para modernizar tu negocio a tu
+                      ritmo.</li>
+                    <li><i class="fa-solid fa-piggy-bank"></i> Evita gastos innecesarios en tecnología que no se ajusta
+                      a ti.</li>
+                    <li><i class="fa-solid fa-handshake"></i> Decisiones más seguras con el acompañamiento de un
+                      experto.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Slide 4: Soluciones Tecnológicas -->
+              <article class="carousel-slide">
+                <div class="solution-card">
+                  <div class="solution-icon"><i class="fa-solid fa-microchip"></i></div>
+                  <h3 class="solution-title">Soluciones Tecnológicas a la Medida</h3>
+                  <p class="solution-desc">Integramos software, equipos y redes en una solución completa que se adapta a
+                    tu operación: desde sistemas de ventas e inventario hasta herramientas internas para tu equipo.</p>
+                  <h4 class="solution-subtitle">¿Cómo te facilita el trabajo?</h4>
+                  <ul class="solution-benefits">
+                    <li><i class="fa-solid fa-layer-group"></i> Toda tu información conectada en un solo lugar, sin
+                      hojas sueltas.</li>
+                    <li><i class="fa-solid fa-mobile-screen"></i> Consulta ventas e inventario desde donde estés.</li>
+                    <li><i class="fa-solid fa-shield-halved"></i> Soporte y respaldo continuo para que tu operación no
+                      se detenga.</li>
+                  </ul>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <button class="carousel-btn" id="carousel-next" type="button" aria-label="Servicio siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
+
+        <div class="solutions-cta reveal reveal-up">
+          <a href="#contacto" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane"></i> Quiero una solución para mi negocio
+          </a>
         </div>
       </div>
     </section>
@@ -325,113 +453,6 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 7: PRUEBA SOCIAL / TESTIMONIOS (CARRUSEL INTERACTIVO) -->
-    <section class="section" id="testimonios">
-      <div class="container">
-        <div class="section-header reveal reveal-up">
-          <div class="badge-tag">
-            PRUEBA SOCIAL
-          </div>
-          <h2 class="section-title">Lo que dicen los dueños de negocio</h2>
-          <p class="section-subtitle">Experiencias reales de clientes que confiaron su tecnología a Pradux Group.</p>
-        </div>
-
-        <div class="carousel-wrapper reveal reveal-up">
-          <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Testimonio Anterior">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <div class="carousel-container" id="carousel-container">
-            <div class="carousel-track" id="carousel-track">
-
-              <!-- Slide 1 -->
-              <div class="carousel-slide">
-                <div class="testimonial-card">
-                  <div class="rating-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="testimonial-text">"Instalaron el sistema POS en mi pizzería y me explicaron todo en menos de
-                    una hora. Cuando tuve una duda el fin de semana, me respondieron de inmediato."</p>
-                  <div class="author-info">
-                    <div class="author-avatar">CM</div>
-                    <div class="author-details">
-                      <h4>Carlos M.</h4>
-                      <p>Dueño de Restaurante & Pizzería</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 2 -->
-              <div class="carousel-slide">
-                <div class="testimonial-card">
-                  <div class="rating-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="testimonial-text">"Armaron los equipos de mi oficina y dejaron la red configurada
-                    perfectamente. Lo mejor fue la garantía de 90 días y la amabilidad con todo el equipo."</p>
-                  <div class="author-info">
-                    <div class="author-avatar">AR</div>
-                    <div class="author-details">
-                      <h4>Andrea R.</h4>
-                      <p>Administradora de Empresa</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="carousel-slide">
-                <div class="testimonial-card">
-                  <div class="rating-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="testimonial-text">"Teníamos problemas constantes con las impresoras de comandas y el cajón
-                    monedero. Pradux hizo un diagnóstico claro y solucionó la falla el mismo día."</p>
-                  <div class="author-info">
-                    <div class="author-avatar">JG</div>
-                    <div class="author-details">
-                      <h4>Jorge G.</h4>
-                      <p>Gerente de Minimarket Local</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 4 -->
-              <div class="carousel-slide">
-                <div class="testimonial-card">
-                  <div class="rating-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                  </div>
-                  <p class="testimonial-text">"Es la primera vez que un soporte técnico nos habla en español claro sin
-                    enredarnos con términos extraños. Totalmente recomendados para cualquier PYME."</p>
-                  <div class="author-info">
-                    <div class="author-avatar">SL</div>
-                    <div class="author-details">
-                      <h4>Sofia L.</h4>
-                      <p>Directora Comercial de Boutique</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <button class="carousel-btn next-btn" id="carousel-next" aria-label="Testimonio Siguiente">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-
-        <div class="carousel-dots" id="carousel-dots"></div>
-      </div>
-    </section>
-
     <!-- SECCIÓN 8: PREGUNTAS FRECUENTES (FAQ) -->
     <section class="section" id="faq">
       <div class="container">
@@ -535,7 +556,10 @@
                     <option value="Soporte Técnico TI">Soporte Técnico Especializado TI</option>
                     <option value="Instalación POS">Instalación & Configuración POS</option>
                     <option value="Redes y Mantenimiento">Redes Locales & Cableado</option>
-                    <option value="Software a Medida / ERP">Software a Medida / ERP</option>
+                    <option value="Desarrollo Web">Desarrollo Web</option>
+                    <option value="Automatización de Procesos">Automatización de Procesos</option>
+                    <option value="Consultoría Tecnológica">Consultoría Tecnológica</option>
+                    <option value="Software a Medida / ERP">Soluciones a la Medida / ERP</option>
                     <option value="Diagnóstico General">Diagnóstico General</option>
                   </select>
                 </div>
@@ -570,8 +594,9 @@
           <img src="assets/Pradux_blanco_recortado.png" alt="Pradux Group" class="footer-logo">
           <p>Tu aliado tecnológico en soporte TI, redes y sistemas POS para comercios y empresas locales.</p>
           <div class="social-links">
-            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/praduxgroup/" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/DevPradus25823" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/pradux-group/?viewAsMember=true" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
         </div>
 
@@ -599,7 +624,6 @@
         <div class="footer-col">
           <h4>Contacto Directo</h4>
           <ul class="contact-info">
-            <li><i class="fa-solid fa-location-dot"></i> Cobertura Local & Remota</li>
             <li><i class="fa-brands fa-whatsapp"></i> +57 316 488 2666</li>
             <li><i class="fa-solid fa-envelope"></i> devsoluciones3@gmail.com</li>
           </ul>
