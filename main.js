@@ -198,10 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   }
 
-  // 3. SCROLL-LINKED HORIZONTAL REVEAL
-  // Each element's horizontal offset is tied to its position in the viewport:
-  // while it rises from the bottom edge (scrolling down) it slides toward the
-  // center; when it sinks back (scrolling up) it slides outward again.
+  // 3. SCROLL-LINKED HORIZONTAL REVEAL + FADE
+  // Each element's horizontal offset and opacity are tied to its position in the
+  // viewport: while it rises from the bottom edge (scrolling down) it slides
+  // toward the center and fades in; when it sinks back (scrolling up) it slides
+  // outward and fades out again.
   const revealElements = Array.from(document.querySelectorAll('.reveal'));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -234,13 +235,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxShift = window.innerWidth <= 768 ? 40 : 110;
       // Distance (in px) the element travels upward to fully reach its place.
       const travel = vh * 0.55;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const maxScroll = Math.max(document.documentElement.scrollHeight - vh, 0);
 
       revealElements.forEach((el) => {
         const top = el.getBoundingClientRect().top;
-        const progress = Math.min(Math.max((vh - top) / travel, 0), 1);
+        // Elements near the end of the page can't rise as far as `travel`;
+        // shorten their path so they still become fully visible at the bottom.
+        const topAtPageEnd = top + scrollY - maxScroll;
+        const range = Math.max(Math.min(travel, vh - topAtPageEnd), 1);
+        const progress = Math.min(Math.max((vh - top) / range, 0), 1);
         const eased = 1 - Math.pow(1 - progress, 3);
+        // Slide: fast at first, settles into place.
         el.style.setProperty('--shift', `${(1 - eased) * maxShift * el._dir}px`);
-        el.style.setProperty('--fade', (0.15 + 0.85 * eased).toFixed(3));
+        // Fade: fully transparent below the viewport, gradually opaque while
+        // scrolling down, and fading out again when scrolling back up.
+        const fade = progress * progress * (3 - 2 * progress);
+        el.style.setProperty('--fade', fade.toFixed(3));
       });
     };
 
