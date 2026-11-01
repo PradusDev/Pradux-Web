@@ -69,10 +69,7 @@
           title="Cambiar a modo claro">
           <i class="fa-solid fa-sun"></i>
         </button>
-        <a href="https://wa.me/573164882666" class="btn btn-whatsapp btn-whatsapp-action header-whatsapp-btn"
-          aria-label="Soporte Inmediato">
-          <i class="fa-brands fa-whatsapp"></i> <span class="btn-text">Soporte Inmediato</span>
-        </a>
+
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -101,77 +98,6 @@
           <a href="https://wa.me/573164882666" class="btn btn-primary btn-whatsapp-action">
             <i class="fa-brands fa-whatsapp"></i> Solicitar Diagnóstico o Soporte
           </a>
-          <a href="#servicios" class="btn btn-secondary">
-            <i class="fa-solid fa-arrow-down"></i> Ver Servicios
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 3: NUESTROS SERVICIOS INICIALES (MVP) -->
-    <section class="section" id="servicios">
-      <div class="container">
-        <div class="section-header reveal reveal-up">
-          <div class="badge-tag">
-            SOLUCIONES ESPECIALIZADAS TI
-          </div>
-          <h2 class="section-title">Servicios diseñados para potenciar tu negocio</h2>
-          <p class="section-subtitle">Implementación rápida, soporte continuo y total respaldo técnico para que vendas
-            sin interrupciones.</p>
-        </div>
-
-        <div class="cards-grid">
-          <!-- Servicio 1: Soporte Técnico TI -->
-          <article class="card reveal reveal-left">
-            <div class="card-icon">
-              <i class="fa-solid fa-desktop"></i>
-            </div>
-            <h3 class="card-title">Soporte Técnico Especializado TI</h3>
-            <p class="card-desc">Mantenimiento, ensamble y solución de fallas para computadores y laptops de oficina o
-              negocio.</p>
-            <ul class="card-list">
-              <li><i class="fa-solid fa-circle-check"></i> Ensamble y configuración de PCs a medida para negocios.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Instalación y mantenimiento de impresoras y periféricos.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Configuración de redes locales y optimización de equipos.
-              </li>
-              <li><i class="fa-solid fa-circle-check"></i> Soporte presencial y remoto rápido.</li>
-            </ul>
-          </article>
-
-          <!-- Servicio 2: Sistemas POS -->
-          <article class="card reveal reveal-right">
-            <div class="card-icon">
-              <i class="fa-solid fa-cash-register"></i>
-            </div>
-            <h3 class="card-title">Instalación & Configuración POS</h3>
-            <p class="card-desc">Automatiza el cobro y control de inventario de tu negocio (pizzerías, tiendas,
-              restaurantes, minimarkets).</p>
-            <ul class="card-list">
-              <li><i class="fa-solid fa-circle-check"></i> Instalación llave en mano de Software POS (ej. UniCenta).
-              </li>
-              <li><i class="fa-solid fa-circle-check"></i> Integración de hardware: Impresoras térmicas, cajón monedero
-                y lectores.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Capacitación sencilla al personal (cajeros y
-                administradores).</li>
-              <li><i class="fa-solid fa-circle-check"></i> Copias de seguridad de datos y soporte ante emergencias.</li>
-            </ul>
-          </article>
-
-          <!-- Banner Próximamente (Futuro Roadmap) -->
-          <div class="roadmap-banner reveal reveal-up">
-            <div>
-              <span class="roadmap-tag">PRÓXIMAMENTE • ROADMAP</span>
-              <div class="roadmap-text">
-                <h4>¿Necesitas algo más avanzado para tu empresa?</h4>
-                <p>Estamos expandiendo nuestra oferta de servicios para llevar la innovación al siguiente nivel.</p>
-              </div>
-            </div>
-            <div class="roadmap-chips">
-              <span class="chip"><i class="fa-solid fa-code"></i> Software a Medida</span>
-              <span class="chip"><i class="fa-solid fa-cubes"></i> Módulos ERP</span>
-              <span class="chip"><i class="fa-solid fa-robot"></i> Agentes IA / Chatbots</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -534,9 +460,18 @@
                 </div>
               </div>
 
-
-
               <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-number">Número de contacto *</label>
+                  <div class="phone-group">
+                    <select id="contact-country" name="country_code" aria-label="Indicativo del país">
+                      <option value="+57" selected>Colombia +57</option>
+                    </select>
+                    <input type="tel" id="contact-number" name="number" placeholder="3001234567" inputmode="numeric"
+                      autocomplete="tel-national" maxlength="12" pattern="[0-9]{6,12}"
+                      title="Solo números, entre 6 y 12 dígitos, sin espacios ni símbolos" required>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="contact-sector">Sector de la Empresa *</label>
                   <select id="contact-sector" name="sector" required>
@@ -550,27 +485,26 @@
                     <option value="Otro Sector">Otro Sector</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label for="contact-service">Servicio de Interés</label>
-                  <select id="contact-service" name="service">
-                    <option value="Soporte Técnico TI">Soporte Técnico Especializado TI</option>
-                    <option value="Instalación POS">Instalación & Configuración POS</option>
-                    <option value="Redes y Mantenimiento">Redes Locales & Cableado</option>
-                    <option value="Desarrollo Web">Desarrollo Web</option>
-                    <option value="Automatización de Procesos">Automatización de Procesos</option>
-                    <option value="Consultoría Tecnológica">Consultoría Tecnológica</option>
-                    <option value="Software a Medida / ERP">Soluciones a la Medida / ERP</option>
-                    <option value="Diagnóstico General">Diagnóstico General</option>
-                  </select>
-                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-service">Servicio de Interés</label>
+                <select id="contact-service" name="service">
+                  <option value="Desarrollo Web">Desarrollo Web</option>
+                  <option value="Automatización de Procesos">Automatización de Procesos</option>
+                  <option value="Instalación POS">Instalación & Configuración POS</option>                    
+                  <option value="Consultoría Tecnológica">Consultoría Tecnológica</option>
+                  <option value="Diagnóstico General">Diagnóstico General</option>
+                </select>
               </div>
 
 
 
               <div class="form-group">
-                <label for="contact-message">Detalles adicionales o consulta</label>
+                <label for="contact-message">¿Qué problema deseas solucionar?
+                </label>
                 <textarea id="contact-message" name="message" rows="4"
-                  placeholder="Describe brevemente qué requiere tu negocio (Punto de venta, página web, integración con inteligencía artificial, fallas actuales)"></textarea>
+                  placeholder="Describe qué requiere tu negocio (Punto de venta, página web, integración con inteligencía artificial, fallas actuales)"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary submit-btn">

@@ -313,6 +313,172 @@ document.addEventListener('DOMContentLoaded', () => {
   const WHATSAPP_NUMBER = '573164882666';
 
   if (contactForm) {
+    // Teléfono: solo dígitos (se descarta cualquier otro carácter al escribir o pegar)
+    const phoneInput = document.getElementById('contact-number');
+    const countrySelect = document.getElementById('contact-country');
+
+    // Selector de indicativos con banderas (imágenes de FlagCDN, porque Windows no dibuja emojis de banderas).
+    // Los datos vienen de la API CountriesNow; si falla, se usa una lista local de respaldo.
+    const FALLBACK_COUNTRIES = [
+      ['CO', 'Colombia', '+57'], ['AR', 'Argentina', '+54'], ['BO', 'Bolivia', '+591'], ['BR', 'Brasil', '+55'],
+      ['CL', 'Chile', '+56'], ['CR', 'Costa Rica', '+506'], ['CU', 'Cuba', '+53'], ['EC', 'Ecuador', '+593'],
+      ['SV', 'El Salvador', '+503'], ['ES', 'España', '+34'], ['US', 'Estados Unidos', '+1'],
+      ['GT', 'Guatemala', '+502'], ['HN', 'Honduras', '+504'], ['MX', 'México', '+52'], ['NI', 'Nicaragua', '+505'],
+      ['PA', 'Panamá', '+507'], ['PY', 'Paraguay', '+595'], ['PE', 'Perú', '+51'],
+      ['DO', 'República Dominicana', '+1809'], ['UY', 'Uruguay', '+598'], ['VE', 'Venezuela', '+58']
+    ].map(([iso, name, code]) => ({ iso, name, code }));
+
+    const flagUrl = (iso, w) => `https://flagcdn.com/w${w}/${iso.toLowerCase()}.png`;
+
+    const setupCountryPicker = () => {
+      if (!countrySelect) return null;
+      const group = countrySelect.closest('.phone-group');
+      if (!group) return null;
+
+      const picker = document.createElement('div');
+      picker.className = 'country-picker';
+      picker.innerHTML = `
+        <button type="button" class="country-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Indicativo del país">
+          <img class="country-flag" alt="" width="24" height="18">
+          <span class="country-code"></span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="country-dropdown" hidden>
+          <input type="search" class="country-search" placeholder="Buscar país o indicativo" aria-label="Buscar país">
+          <ul class="country-list" role="listbox"></ul>
+        </div>`;
+      group.insertBefore(picker, countrySelect);
+      countrySelect.hidden = true;
+
+      const btn = picker.querySelector('.country-btn');
+      const flagImg = picker.querySelector('.country-flag');
+      const codeSpan = picker.querySelector('.country-code');
+      const dropdown = picker.querySelector('.country-dropdown');
+      const search = picker.querySelector('.country-search');
+      const listEl = picker.querySelector('.country-list');
+      let selectedIso = 'CO';
+
+      const filter = (q) => {
+        const term = q.trim().toLowerCase();
+        listEl.querySelectorAll('li').forEach((li) => {
+          li.hidden = Boolean(term) && !li.dataset.search.includes(term);
+        });
+      };
+
+      const close = () => { dropdown.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+      const open = () => {
+        dropdown.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        search.value = '';
+        filter('');
+        listEl.querySelector('.selected')?.scrollIntoView({ block: 'center' });
+        search.focus();
+      };
+
+      const select = (c) => {
+        selectedIso = c.iso;
+        countrySelect.value = c.code; // el resto del formulario lee este valor
+        flagImg.src = flagUrl(c.iso, 40);
+        codeSpan.textContent = c.code;
+        listEl.querySelectorAll('li').forEach((li) => {
+          const on = li.dataset.iso === c.iso;
+          li.classList.toggle('selected', on);
+          li.setAttribute('aria-selected', String(on));
+        });
+      };
+
+      search.addEventListener('input', () => filter(search.value));
+      search.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          listEl.querySelector('li:not([hidden])')?.click();
+        }
+      });
+      btn.addEventListener('click', () => (dropdown.hidden ? open() : close()));
+      document.addEventListener('click', (e) => { if (!picker.contains(e.target)) close(); });
+      picker.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
+
+      return {
+        render(list) {
+          const optFrag = document.createDocumentFragment();
+          const liFrag = document.createDocumentFragment();
+          list.forEach((c) => {
+            const opt = document.createElement('option');
+            opt.value = c.code;
+            opt.dataset.iso = c.iso;
+            opt.textContent = `${c.name} ${c.code}`;
+            optFrag.append(opt);
+
+            const li = document.createElement('li');
+            li.setAttribute('role', 'option');
+            li.dataset.iso = c.iso;
+            li.dataset.search = `${c.name} ${c.code}`.toLowerCase();
+            const img = document.createElement('img');
+            img.src = flagUrl(c.iso, 40);
+            img.alt = '';
+            img.width = 24;
+            img.height = 18;
+            img.loading = 'lazy';
+            const name = document.createElement('span');
+            name.className = 'country-name';
+            name.textContent = c.name;
+            const dial = document.createElement('span');
+            dial.className = 'country-dial';
+            dial.textContent = c.code;
+            li.append(img, name, dial);
+            li.addEventListener('click', () => { select(c); close(); btn.focus(); });
+            liFrag.append(li);
+          });
+          countrySelect.replaceChildren(optFrag);
+          listEl.replaceChildren(liFrag);
+          select(list.find((c) => c.iso === selectedIso) || list[0]);
+        }
+      };
+    };
+
+    const fetchCountries = async () => {
+      const CACHE_KEY = 'pradux-country-codes-v3';
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (Array.isArray(cached) && cached.length) return cached;
+      } catch (_) { /* sin caché */ }
+
+      const res = await fetch('https://countriesnow.space/api/v0.1/countries/codes');
+      if (!res.ok) throw new Error(res.status);
+      const json = await res.json();
+      if (json.error || !Array.isArray(json.data)) throw new Error(json.msg || 'respuesta inválida');
+      let names = null;
+      try { names = new Intl.DisplayNames(['es'], { type: 'region' }); } catch (_) { /* navegador antiguo */ }
+      const list = json.data
+        .filter((c) => /^[A-Z]{2}$/.test(c.code) && c.dial_code)
+        .map((c) => {
+          let name = c.name;
+          try { name = names?.of(c.code) || c.name; } catch (_) { /* usar nombre original */ }
+          return { iso: c.code, name, code: c.dial_code.replace(/\s+/g, '') }; // "+1 684" -> "+1684"
+        })
+        .sort((a, b) => a.name.localeCompare(b.name, 'es'));
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify(list)); } catch (_) { /* ignorar */ }
+      return list;
+    };
+
+    const countryPicker = setupCountryPicker();
+    if (countryPicker) {
+      countryPicker.render(FALLBACK_COUNTRIES); // visible de inmediato
+      fetchCountries()
+        .then((list) => countryPicker.render(list))
+        .catch((err) => console.warn('No se pudo cargar la lista de indicativos; se usa la lista local.', err));
+    }
+
+    if (phoneInput) {
+      phoneInput.addEventListener('input', () => {
+        phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 12);
+        phoneInput.setCustomValidity('');
+      });
+      phoneInput.addEventListener('invalid', () => {
+        phoneInput.setCustomValidity('Ingresa solo números (entre 6 y 12 dígitos).');
+      });
+    }
+
     const submitBtn = contactForm.querySelector('.submit-btn');
     const submitBtnHTML = submitBtn ? submitBtn.innerHTML : '';
 
@@ -342,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = {
         name: document.getElementById('contact-name')?.value.trim() || '',
         email: document.getElementById('contact-email')?.value.trim() || '',
+        phone: `${document.getElementById('contact-country')?.value || ''} ${document.getElementById('contact-number')?.value || ''}`.trim(),
         sector: document.getElementById('contact-sector')?.value || 'No especificado',
         service: document.getElementById('contact-service')?.value || 'Diagnóstico General',
         message: document.getElementById('contact-message')?.value.trim() || 'Sin detalles adicionales'
@@ -353,6 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '',
         `*Nombre:* ${data.name}`,
         `*Correo:* ${data.email}`,
+        `*Teléfono:* ${data.phone}`,
         `*Sector:* ${data.sector}`,
         `*Servicio de interés:* ${data.service}`,
         `*Detalles:* ${data.message}`
@@ -377,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             _captcha: 'false',
             Nombre: data.name,
             email: data.email,
+            'Teléfono': data.phone,
             Sector: data.sector,
             'Servicio de interés': data.service,
             Detalles: data.message
